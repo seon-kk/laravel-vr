@@ -16,7 +16,7 @@ class PersonalTrainer
         $this->solutions = new Collection();
     }
 
-    public function getWeightConsulting()
+    public function getWeightConsulting(array $lifeStyles, string $preferSolutionType = null)
     {
 
     }
