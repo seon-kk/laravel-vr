@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ConsultingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/v1')->get('/how-to-lose-weight');
+Route::prefix('/v1')->get('/how-to-lose-weight', [ConsultingController::class, 'getWeightConsulting']);
