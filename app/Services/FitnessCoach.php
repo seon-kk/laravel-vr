@@ -4,12 +4,9 @@ namespace App\Services;
 
 use App\Enums\FitnessSolutionEnum;
 use App\Enums\LifeStyleEnum;
-use Illuminate\Support\Collection;
 
-class FitnessCoach
+class FitnessCoach extends SolutionExpert
 {
-    private Collection $recommendSolutions;
-
     const SOLUTION_LIST = [
         [
             'solution' => FitnessSolutionEnum::CROSSFIT,
@@ -42,34 +39,6 @@ class FitnessCoach
 
     public function __construct()
     {
-        $this->recommendSolutions = new Collection();
-    }
-
-
-    public function getRecommendSolutions(array $lifeStyles): Collection
-    {
-        foreach ($lifeStyles as $lifeStyle) {
-            $this->addMatchingSolution(LifeStyleEnum::from($lifeStyle));
-        }
-
-        $this->filterUniqueSolution();
-
-        return $this->recommendSolutions;
-    }
-
-
-    private function addMatchingSolution(LifeStyleEnum $lifeStyle): void
-    {
-        foreach (self::SOLUTION_LIST as $solution) {
-            if (in_array($lifeStyle, $solution['life_style'])) {
-                $this->recommendSolutions->push($solution['solution']->value);
-            }
-        }
-    }
-
-
-    private function filterUniqueSolution(): void
-    {
-        $this->recommendSolutions = $this->recommendSolutions->unique()->values();
+        parent::__construct();
     }
 }

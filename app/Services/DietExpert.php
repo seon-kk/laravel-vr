@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Enums\DietSolutionEnum;
 use App\Enums\LifeStyleEnum;
 
-class DietExpert
+class DietExpert extends SolutionExpert
 {
     const SOLUTION_LIST = [
         [
