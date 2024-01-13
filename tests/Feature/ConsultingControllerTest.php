@@ -24,4 +24,54 @@ class ConsultingControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+
+    public function test_validation_life_style_required()
+    {
+        $weightRequest = [
+            'prefer_solution_type' => SolutionTypeEnum::DIET->value
+        ];
+
+        $response = $this->get('/v1/how-to-lose-weight?' . http_build_query($weightRequest));
+
+        $response->dump()
+            ->assertStatus(422)
+            ->assertJson([
+                'code' => 'VALIDATION_FAILED',
+            ]);
+    }
+
+
+    public function test_validation_life_style_invalid()
+    {
+        $weightRequest = [
+            'life_style' => [LifeStyleEnum::STRONG_WILL->value, "abcd"],
+            'prefer_solution_type' => SolutionTypeEnum::DIET->value
+        ];
+
+        $response = $this->get('/v1/how-to-lose-weight?' . http_build_query($weightRequest));
+
+        $response->dump()
+            ->assertStatus(422)
+            ->assertJson([
+                'code' => 'VALIDATION_FAILED',
+            ]);
+    }
+
+
+    public function test_validation_solution_type_invalid()
+    {
+        $weightRequest = [
+            'life_style' => [LifeStyleEnum::STRONG_WILL->value],
+            'prefer_solution_type' => "abcd"
+        ];
+
+        $response = $this->get('/v1/how-to-lose-weight?' . http_build_query($weightRequest));
+
+        $response->dump()
+            ->assertStatus(422)
+            ->assertJson([
+                'code' => 'VALIDATION_FAILED',
+            ]);
+    }
 }
