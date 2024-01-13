@@ -46,8 +46,30 @@ class FitnessCoach
     }
 
 
-    public function getRecommendSolutions()
+    public function getRecommendSolutions(array $lifeStyles): Collection
     {
+        foreach ($lifeStyles as $lifeStyle) {
+            $this->addMatchingSolution(LifeStyleEnum::from($lifeStyle));
+        }
+
+        $this->filterUniqueSolution();
+
         return $this->recommendSolutions;
+    }
+
+
+    private function addMatchingSolution(LifeStyleEnum $lifeStyle): void
+    {
+        foreach (self::SOLUTION_LIST as $solution) {
+            if (in_array($lifeStyle, $solution['life_style'])) {
+                $this->recommendSolutions->push($solution['solution']->value);
+            }
+        }
+    }
+
+
+    private function filterUniqueSolution(): void
+    {
+        $this->recommendSolutions = $this->recommendSolutions->unique()->values();
     }
 }
