@@ -22,6 +22,12 @@ class PersonalTrainer
     }
 
 
+    /**
+     * 선호 솔루션 타입에 따라 Diet, Fitness 솔루션 순서대로 조회 후 리턴
+     * @param array $lifeStyles
+     * @param string|null $preferSolutionType
+     * @return Collection
+     */
     public function getWeightConsulting(array $lifeStyles, string $preferSolutionType = null): Collection
     {
         if($preferSolutionType == SolutionTypeEnum::DIET->value || $preferSolutionType == null){
@@ -36,6 +42,11 @@ class PersonalTrainer
     }
 
 
+    /**
+     * 다이어트 솔루션을 조회 후 solution collection 에 합침
+     * @param array $lifeStyles
+     * @return void
+     */
     private function addDietSolution(array $lifeStyles): void
     {
         $dietSolution = $this->dietExpert->getRecommendSolutions($lifeStyles);
@@ -43,13 +54,23 @@ class PersonalTrainer
     }
 
 
+    /**
+     * 피트니스 솔루션을 조회 후 solution collection 에 합침
+     * @param array $lifeStyles
+     * @return void
+     */
     private function addFitnessSolution(array $lifeStyles): void
     {
         $fitnessSolution = $this->fitnessCoach->getRecommendSolutions($lifeStyles);
         $this->mergeSolutions($fitnessSolution);
     }
 
-    
+
+    /**
+     * 주어진 솔루션 콜렉션을 합침
+     * @param Collection $solution
+     * @return void
+     */
     private function mergeSolutions(Collection $solution): void
     {
         $this->solutions = $this->solutions->merge($solution);
