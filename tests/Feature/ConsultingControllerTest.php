@@ -22,7 +22,9 @@ class ConsultingControllerTest extends TestCase
 
         $response = $this->get('/v1/how-to-lose-weight?' . http_build_query($weightRequest));
 
-        $response->assertStatus(200);
+        $response->dump()
+            ->assertStatus(200)
+            ->assertJsonIsArray();
     }
 
 
