@@ -82,3 +82,8 @@
     * PersonalTrainer.php
 * routes/
   * api.php : API 경로 설정
+* tests/
+  * Feature/
+    * ConsultingControllerTest.php : API 기능, 리퀘스트 검증 테스트 클래스
+  * Unit/
+    * SolutionTest.php : 각 솔루션 조회 기능 테스트 클래스
