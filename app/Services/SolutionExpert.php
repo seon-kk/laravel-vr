@@ -5,6 +5,11 @@ namespace App\Services;
 use App\Enums\LifeStyleEnum;
 use Illuminate\Support\Collection;
 
+/**
+ * 태그를 이용하여 솔루션을 조회하는 데에 필요한 공통 기능을 정의
+ * DietExpert, FitnessCoach 클래스의 부모 클래스
+ */
+
 class SolutionExpert
 {
     const SOLUTION_LIST = [];

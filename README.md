@@ -57,3 +57,28 @@
     }
 }
 ```
+
+### 생성/수정 작업된 파일 목록
+
+* app/
+  * Enums/ : 솔루션, 라이프스타일 태그 등에 대한 Enum 클래스 추가
+    * DietSolutionEnum.php
+    * FitnessSolutionEnum.php
+    * LifeStyleEnum.php
+    * SolutionTypeEnum.php
+  * Exceptions/
+    * Handler.php : 검증 에러 발생시 API Response 추가
+  * Http/
+    * Controllers/
+      * ConsultingController.php : API 컨트롤러 클래스
+    * Requests/
+      * WeightConsultingRequest.php : API Request 검증 클래스
+  * Providers/
+    * RouteServiceProvider.php : API의 1depth URL 경로 설정
+  * Services/ : 솔루션 API에 대한 기능 수행 클래스
+    * DietExpert.php 
+    * FitnessCoach.php
+    * SolutionExpert.php
+    * PersonalTrainer.php
+* routes/
+  * api.php : API 경로 설정
